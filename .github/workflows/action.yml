@@ -1,0 +1,27 @@
+name: check github workflow status
+
+on:
+  push:
+  schedule:
+    - cron: 0 * * * *
+  workflow_dispatch:
+
+
+jobs:
+  github-checker:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - uses: actions/setup-python@v2
+      with:
+        python-version: '3.8' # Version range or exact version of a Python version to use, using SemVer's version range syntax
+
+    - name: install pip dependencies
+      run: pip install -r requirements.txt
+
+    - name: check builds
+      run: python app.py
+      env:
+        GITHUB_TOKEN: ${{ secrets.DLB_BOT_TOKEN }}
+        SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}

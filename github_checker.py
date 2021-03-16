@@ -35,6 +35,9 @@ class GithubChecker:
                     if run.status != "completed":
                         continue
 
+                    if run.head_branch != repo.default_branch:
+                        continue
+
                     if run.conclusion == "success":
                         break
 

@@ -3,7 +3,7 @@ name: check github workflow status
 on:
   push:
   schedule:
-    - cron: 0 7-18 * * MON-FRI
+    - cron: 0 7-18/4 * * MON-FRI
   workflow_dispatch:
 
 
